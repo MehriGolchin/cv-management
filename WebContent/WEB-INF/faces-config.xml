@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+      http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+
+    <!-- Configuration de l'application -->
+    <application>
+        <resource-bundle>
+            <base-name>main.resources.messages</base-name>
+            <var>messages</var>
+        </resource-bundle>
+        <message-bundle>
+            main.resources.messages
+        </message-bundle>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>fr</supported-locale>
+        </locale-config>
+    </application>
+	<navigation-rule>
+		<display-name>login</display-name>
+		    <from-view-id>/login.xhtml</from-view-id>
+		    <navigation-case>
+		        <from-outcome>login</from-outcome>
+		        <to-view-id>/login.xhtml</to-view-id>
+		    </navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Create Person</display-name>
+		    <from-view-id>/createPerson.xhtml</from-view-id>
+		    <navigation-case>
+		        <from-outcome>createPerson</from-outcome>
+		        <to-view-id>/createPerson.xhtml</to-view-id>
+		    </navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+        <from-view-id>/editPerson.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{login.isAuthenticated}</from-action>
+            <from-outcome>Authenticated</from-outcome>
+            <to-view-id>/editPerson.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{login.isAuthenticated}</from-action>
+            <from-outcome>Anonymous</from-outcome>
+            <to-view-id>/persons.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

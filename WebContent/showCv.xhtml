@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h:form>
+				<p:panel id="panel" header="Profile Informations">
+					<c:set var="p" value="#{person.thePerson}" />
+					<div class="jumbotron">
+
+						<p>Id: #{p.personId}</p>
+						<p>Nom: #{p.firstName} #{p.lastName}</p>
+						<p>Email: #{p.email}</p>
+						<p>Website: #{p.webSite}</p>
+						<p>Date de naissance: #{p.birthDate}</p>
+						<p>
+							<h:link outcome="persons" styleClass="btn btn-info">
+								<span>Liste de persons</span>
+							</h:link>
+						</p>
+					</div>
+					<div>
+						<h:commandLink action="createActivity"
+							rendered="#{p.email == request.getSession().getAttribute('username')}"
+							class="glyphicon glyphicon-plus">
+							<h:outputText value="Ajouter activities" />
+						</h:commandLink>
+					</div>
+				</p:panel>
+				<p:dataTable value="#{activity.getActivitiesByid(p.personId)}"
+					var="a" styleClass="table table-hover" headerClass="danger"
+					footerClass="danger" rowClasses="success,warning" rows="3"
+					paginator="true">
+					<p:column>
+						<f:facet name="header">Numéro</f:facet>
+						<h:outputText value="#{a.activityId}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">Année</f:facet>
+						<h:outputText value="#{a.year}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">Titre</f:facet>
+						<h:outputText value="#{a.title}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">Nature</f:facet>
+						<h:outputText value="#{a.nature}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">Actions</f:facet>
+						<h:commandLink value="Show" styleClass="btn btn-primary btn-xs"
+							action="#{activity.show(a.activityId)}" />
+						<span> </span>
+						<h:commandLink value="Edit"
+							rendered="#{p.email == request.getSession().getAttribute('username')}"
+							styleClass="btn btn-primary btn-xs"
+							action="#{activity.edit(a.activityId)}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+
+</html>

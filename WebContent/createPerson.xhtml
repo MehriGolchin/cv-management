@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h:form id="register-form">
+				<div class="form-group">
+					<h:outputLabel for="firstName" value="First name : " />
+					<h:inputText id="firstName" value="#{person.firstName}"
+						class="form-control" required="true"
+						requiredMessage="Le prenom est obligatoire">
+						<f:validateLength minimum="3" maximum="100" />
+					</h:inputText>
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="lastName" value="Last name : " />
+					<h:inputText id="lastName" value="#{person.lastName}"
+						class="form-control" required="true"
+						requiredMessage="Le nom est obligatoire">
+						<f:validateLength minimum="3" maximum="100" />
+					</h:inputText>
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="email" value="Email : " />
+					<h:inputText id="email" value="#{person.email}"
+						class="form-control" required="true"
+						requiredMessage="Le email est obligatoire">
+						<f:validateLength minimum="3" maximum="200" />
+					</h:inputText>
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="webSite" value="Site web : " />
+					<h:inputText id="webSite" value="#{person.webSite}"
+						class="form-control" label="webSite" required="true">
+						<f:validateLength minimum="2" />
+					</h:inputText>
+					<h:message for="webSite" id="msgwebSite" display="icon" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="birthday" value="Date de naissance:" />
+					<h:inputText id="birthday" value="#{person.birthDate}"
+						class="form-control" mask="true" label="birthday" required="true">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:validateLength minimum="2" />
+					</h:inputText>
+					<h:message for="birthday" id="msgbirthday" display="icon" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="password" value="Mot de passe:" />
+					<h:inputSecret id="password" value="#{person.password}"
+						class="form-control" match="passwordConfirmation"
+						label="Mot de passe" feedback="true"
+						promptLabel="Saisir le mot de passe" required="true">
+						<f:validateLength minimum="2" />
+					</h:inputSecret>
+					<h:message for="password" id="msgpassword" display="icon" />
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3">
+							<h:commandButton value="Save" update="panel" id="register-submit"
+								action="#{person.save}" class="form-control btn btn-register">
+								<f:ajax execute="@this" render="@form" />
+								</h:commandButton>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

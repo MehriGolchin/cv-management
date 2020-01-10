@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h4>Rechercher les Activités</h4>
+		</f:view>
+		<h:form>
+			<p:panelGrid layout="grid" columns="2" style="width:1135px">
+				<p:outputLabel value="Titre: " />
+				<p:inputText id="titre" value="#{activity.title}" />
+				<h:commandButton
+					action="#{activity.getActivitiesByTitle(activity.title)}"
+					value="Recherche" icon="ui-icon-search" />
+			</p:panelGrid>
+			<p:dataTable value="#{activity.getActivitiesByTitle(activity.title)}"
+				var="a" styleClass="table table-hover" headerClass="danger"
+				rendered="#{not empty activity.title}" footerClass="danger"
+				rowClasses="success,warning" rows="5" paginator="true">
+				<p:column>
+					<f:facet name="header">Numéro</f:facet>
+					<h:outputText value="#{a.activityId}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Année</f:facet>
+					<h:outputText value="#{a.year}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Titre</f:facet>
+					<h:outputText value="#{a.title}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Nature</f:facet>
+					<h:outputText value="#{a.nature}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Actions</f:facet>
+					<h:commandLink value="Show" styleClass="btn btn-primary btn-xs"
+						action="#{activity.show(a.activityId)}" />
+					<span> </span>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+	<ui:define name="title">Recherche</ui:define>
+</ui:composition>
+
+</html>

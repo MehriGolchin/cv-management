@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h:form>
+				<p:panel id="panel" header="Activities Informations">
+					<c:set var="a" value="#{activity.theActivity}" />
+					<div class="jumbotron">
+						<p>Id: #{a.activityId}</p>
+						<p>Titre: #{a.title}</p>
+						<p>Année: #{a.year}</p>
+						<p>Nature: #{a.nature}</p>
+						<p>Website: #{a.webSite}</p>
+						<p>Description: #{a.description}</p>
+						<!-- 					<p> -->
+						<!-- 						<h:commandLink action="showCv" rendered="#{request.getSession().getAttribute('username') != null}" -->
+						<!-- 							styleClass="btn btn-info"> -->
+						<!-- 							<span>Retour</span> -->
+						<!-- 						</h:commandLink> -->
+						<!-- 					</p> -->
+						<!-- 					<p> -->
+						<!-- 						<h:commandLink action="editActivity" rendered="#{request.getSession().getAttribute('username') != null}" -->
+						<!-- 							styleClass="btn btn-danger"> -->
+						<!-- 							<span>Modifier</span> -->
+						<!-- 						</h:commandLink> -->
+						<!-- 					</p> -->
+					</div>
+				</p:panel>
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+
+</html>

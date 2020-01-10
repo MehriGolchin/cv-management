@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title><ui:insert name="title">My application</ui:insert></title>
+	<h:outputStylesheet library="webjars"
+		name="bootstrap/3.3.7/css/bootstrap.min-jsf.css" />
+	<h:outputScript library="webjars" name="jquery/1.11.1/jquery.js" />
+	<h:outputScript library="webjars"
+		name="bootstrap/3.3.7/js/bootstrap.js" />
+	<h:outputScript library="js" name="hello.js" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<div class="container">
+		<h:form>
+			<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<h:link class="navbar-brand" outcome="persons">Cv Management</h:link>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown"><h:link outcome="search"
+									value="Search  CVs">
+									<i class="glyphicon glyphicon-th"></i>
+								</h:link></li>
+							<li class="dropdown"><h:link outcome="persons"
+									value="Consult CVs">
+									<i class="glyphicon glyphicon-th"></i>
+								</h:link></li>
+							<li><ui:insert name="connect">
+									<h:link outcome="login" value="Login ">
+										<i class="glyphicon glyphicon-user"></i>
+									</h:link>
+								</ui:insert></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</h:form>
+		<ui:debug />
+		<div>
+			<ui:insert name="content">
+				<p>CONTENT</p>
+			</ui:insert>
+			<h:messages />
+		</div>
+
+		<footer class="page-footer">
+			<div class="footer-copyright text-center py-3">
+				<ui:insert name="footer">
+					<span>(c) 2020</span>
+				</ui:insert>
+			</div>
+		</footer>
+	</div>
+</h:body>
+</html>

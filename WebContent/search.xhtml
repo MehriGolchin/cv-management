@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h4>Rechercher les Personnes</h4>
+		</f:view>
+		<h:form>
+			<p:panelGrid layout="grid" columns="2" style="width:1135px">
+				<p:outputLabel value="Prénom : " />
+				<p:inputText id="Prénom" value="#{person.firstName}" />
+				<p:outputLabel value="Nom : " />
+				<p:inputText id="nom" value="#{person.lastName}" />
+				<h:commandButton action="#{person.SearchPerson()}" value="Recherche"
+					icon="ui-icon-search" ajax="false" />
+			</p:panelGrid>
+			<p:dataTable value="#{person.SearchPerson()}" var="p"
+				styleClass="table table-hover" headerClass="danger"
+				rendered="#{not empty person.lastName or not empty person.firstName}"
+				footerClass="danger" rowClasses="success,warning" rows="5"
+				paginator="true">
+				<p:column>
+					<f:facet name="header">Numéro</f:facet>
+					<h:outputText value="#{p.personId}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Noms</f:facet>
+					<h:outputText value="#{p.firstName} #{p.lastName}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Actions</f:facet>
+					<!-- 					<h:commandLink value="Show Profile" styleClass="btn btn-primary btn-xs" -->
+					<!-- 						action="#{person.show(p.personId)}" /> -->
+					<!-- 					<span> </span> -->
+					<h:commandLink value="Show CV" styleClass="btn btn-primary btn-xs"
+						action="#{person.showCv(p.personId)}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+	<ui:define name="title">Recherche</ui:define>
+</ui:composition>
+
+</html>

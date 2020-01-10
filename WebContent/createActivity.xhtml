@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h:form id="test">
+				<div class="form-group">
+					<h:outputLabel value="Année: " for="year" />
+					<h:inputText id="year" value="#{activity.year}"
+						styleClass="form-control">
+						<f:validateLength minimum="2" maximum="4" />
+					</h:inputText>
+					<h:message styleClass="label label-danger" for="year" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Nature: " for="nature" />
+					<h:selectOneMenu value="#{activity.nature}" id="nature"
+						styleClass="form-control">
+						<f:selectItem itemValue="expérience_professionnelle"
+							itemLabel="expérience_professionnelle" />
+						<f:selectItem itemValue="formation" itemLabel="formation" />
+						<f:selectItem itemValue="projets" itemLabel="projets" />
+					</h:selectOneMenu>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Titre: " for="title" />
+					<h:inputText id="title" value="#{activity.title}"
+						styleClass="form-control">
+						<f:validateLength minimum="2" maximum="100" />
+					</h:inputText>
+					<h:message styleClass="label label-danger" for="title" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Website: " for="webSite" />
+					<h:inputText id="webSite" value="#{activity.webSite}"
+						styleClass="form-control" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Description: " for="description" />
+					<h:inputTextarea id="description" value="#{activity.description}"
+						styleClass="form-control" cols="20" rows="5" />
+				</div>
+				<h:commandButton styleClass="btn btn-primary" value="Enregistrer"
+					action="#{activity.save}"/>
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

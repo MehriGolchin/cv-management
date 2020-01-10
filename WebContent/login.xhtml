@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/template/mylayout.xhtml">*
+    	<ui:define name="login">Login</ui:define>
+
+		<ui:define name="content">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div class="panel panel-login">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-xs-6">
+									<h:link outcome="login" class="active" id="login-form-link"
+										value="Login ">
+									</h:link>
+								</div>
+								<div class="col-xs-6">
+									<a href="#" id="register-form-link">Register</a>
+								</div>
+							</div>
+							<hr />
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<h:form id="login-form">
+										<div class="form-group">
+											<h:outputLabel for="email" value="E_mail : " />
+											<h:inputText id="email" value="#{login.email}"
+												class="form-control" required="true"
+												requiredMessage="Le mail est obligatoire">
+												<f:validateLength minimum="3" maximum="200" />
+											</h:inputText>
+										</div>
+										<div class="form-group">
+											<h:outputLabel for="password" value="Password: " />
+											<h:inputSecret id="password" class="form-control"
+												required="true" value="#{login.password}"
+												requiredMessage="Le password est obligatoire">
+												<f:validateLength minimum="3" maximum="100" />
+											</h:inputSecret>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6 col-sm-offset-3">
+													<h:commandButton id="login-submit"
+														class="form-control btn btn-login" value="Login"
+														action="#{login.loginUser}" />
+												</div>
+											</div>
+										</div>
+									</h:form>
+									<h:form id="register-form" style="display: none;">
+										<div class="form-group">
+											<h:outputLabel for="firstName" value="First name : " />
+											<h:inputText id="firstName" value="#{person.firstName}"
+												class="form-control" required="true"
+												requiredMessage="Le prenom est obligatoire">
+												<f:validateLength minimum="3" maximum="100" />
+											</h:inputText>
+										</div>
+										<div class="form-group">
+											<h:outputLabel for="lastName" value="Last name : " />
+											<h:inputText id="lastName" value="#{person.lastName}"
+												class="form-control" required="true"
+												requiredMessage="Le nom est obligatoire">
+												<f:validateLength minimum="3" maximum="100" />
+											</h:inputText>
+										</div>
+										<div class="form-group">
+											<h:outputLabel for="email" value="Email : " />
+											<h:inputText id="email" value="#{person.email}"
+												class="form-control" required="true"
+												requiredMessage="Le email est obligatoire">
+												<f:validateLength minimum="3" maximum="200" />
+											</h:inputText>
+										</div>
+										<div class="form-group">
+											<h:outputLabel for="webSite" value="Site web : " />
+											<h:inputText id="webSite" value="#{person.webSite}"
+												class="form-control" label="webSite">
+												<f:validateLength minimum="2" />
+											</h:inputText>
+											<h:message for="webSite" id="msgwebSite" display="icon" />
+										</div>
+										<div class="form-group">
+											<h:outputLabel for="birthday" value="Date de naissance:" />
+											<h:inputText id="birthday" value="#{person.birthDate}"
+												class="form-control" mask="true" label="birthday">
+												<span> format: dd/MM/yyyy</span>
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+												<f:validateLength minimum="2" />
+											</h:inputText>
+											<h:message for="birthday" id="msgbirthday" display="icon" />
+										</div>
+										<div class="form-group">
+											<h:outputLabel for="password" value="Mot de passe:" />
+											<h:inputSecret id="password" value="#{person.password}"
+												class="form-control" match="passwordConfirmation"
+												label="Mot de passe" feedback="true"
+												promptLabel="Saisir le mot de passe" required="true">
+												<f:validateLength minimum="2" />
+											</h:inputSecret>
+											<h:message for="password" id="msgpassword" display="icon" />
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6 col-sm-offset-3">
+													<h:commandButton value="Save" update="panel"
+														id="register-submit" action="#{person.save}"
+														class="form-control btn btn-register" />
+												</div>
+											</div>
+										</div>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

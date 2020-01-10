@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+<composite:interface>
+    <composite:attribute name="title" required="false" default="ALERT !" />
+</composite:interface>
+
+<composite:implementation>
+    <div class="alert alert-danger">
+        <div>
+            <b><h:outputLabel value="#{cc.attrs.title}" /></b>
+        </div>
+        <div>
+            <composite:insertChildren />
+        </div>
+    </div>
+</composite:implementation>
+
+</html>
