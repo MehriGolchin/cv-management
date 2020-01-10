@@ -53,8 +53,9 @@ public class PersonService implements IPersonService {
 		
 	}
 
-	@RolesAllowed({"user"})
+	//@RolesAllowed({"user"})
 	public void deletePerson(Person person) {
+		person = em.merge(person);
 		em.remove(person);
 	}
 	

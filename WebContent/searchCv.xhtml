@@ -19,7 +19,7 @@
 					action="#{activity.getActivitiesByTitle(activity.title)}"
 					value="Recherche" icon="ui-icon-search" />
 			</p:panelGrid>
-			<p:dataTable value="#{activity.getActivitiesByTitle(activity.title)}"
+			<p:dataTable value="#{activity.getActivitiesByTitle(activity.title)}" 
 				var="a" styleClass="table table-hover" headerClass="danger"
 				rendered="#{not empty activity.title}" footerClass="danger"
 				rowClasses="success,warning" rows="5" paginator="true">

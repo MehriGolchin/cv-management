@@ -59,5 +59,13 @@ public class ActivityService implements IActivityService {
 		query.setParameter("title", "%" + title.toLowerCase() + "%");
 		return query.setMaxResults(100).getResultList();
 	}
+	
+	public void deleteActivitiesByPersonId(Long personId) {
+		List<Activity> activities = getActivitiesByid(personId);
+		for (Activity activ : activities) 
+		{ 
+			deleteActivity(activ);
+		}
+	}
 
 }

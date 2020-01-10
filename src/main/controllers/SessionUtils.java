@@ -44,5 +44,9 @@ public class SessionUtils {
 		else
 			return null;
 	}
+	
+	public static void clearSession() {
+    	FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	}
 
 }

@@ -12,6 +12,7 @@ public interface IActivityService {
 	Activity createActivity(Activity activity);
 	Activity getActivityById(Long activityId);
 	void deleteActivity(Activity activity);
+	void deleteActivitiesByPersonId(Long personId);
 	List<Activity> findActivitiesByTitle(String title);
 	
 }

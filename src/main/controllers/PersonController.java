@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.bean.ManagedBean;
 import main.models.Person;
+import main.services.IActivityService;
 import main.services.IPersonService;
 
 @ManagedBean(name = "person")
@@ -19,6 +20,9 @@ public class PersonController implements Serializable {
 
 	@EJB
 	IPersonService ps;
+	
+	@EJB
+	IActivityService as;
 	
 	Person thePerson = new Person();
 	
@@ -142,6 +146,14 @@ public class PersonController implements Serializable {
         thePerson = ps.getPersonById(personId);
         return "showCv?faces-redirect=true";
     }
+	
+	public String delete(Long personId) {
+		as.deleteActivitiesByPersonId(personId);
+		thePerson = ps.getPersonById(personId);
+		ps.deletePerson(thePerson);
+		SessionUtils.clearSession();
+        return "login?faces-redirect=true";
+	}
 	
 	public String getPersonByEmail(String email) {
 		thePerson = ps.getPersonByEmail(email);
