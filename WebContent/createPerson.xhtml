@@ -10,7 +10,7 @@
 		<f:view>
 			<h:form id="register-form">
 				<div class="form-group">
-					<h:outputLabel for="firstName" value="First name : " />
+					<h:outputLabel for="firstName" value="Prénom : " />
 					<h:inputText id="firstName" value="#{person.firstName}"
 						class="form-control" required="true"
 						requiredMessage="Le prenom est obligatoire">
@@ -18,7 +18,7 @@
 					</h:inputText>
 				</div>
 				<div class="form-group">
-					<h:outputLabel for="lastName" value="Last name : " />
+					<h:outputLabel for="lastName" value="Nom : " />
 					<h:inputText id="lastName" value="#{person.lastName}"
 						class="form-control" required="true"
 						requiredMessage="Le nom est obligatoire">
@@ -36,10 +36,9 @@
 				<div class="form-group">
 					<h:outputLabel for="webSite" value="Site web : " />
 					<h:inputText id="webSite" value="#{person.webSite}"
-						class="form-control" label="webSite" required="true">
-						<f:validateLength minimum="2" />
+						class="form-control" label="webSite" required="false">
 					</h:inputText>
-					<h:message for="webSite" id="msgwebSite" display="icon" />
+					
 				</div>
 				<div class="form-group">
 					<h:outputLabel for="birthday" value="Date de naissance:" />
