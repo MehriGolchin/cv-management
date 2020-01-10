@@ -62,6 +62,13 @@
 							rendered="#{p.email == request.getSession().getAttribute('username')}"
 							styleClass="btn btn-primary btn-xs"
 							action="#{activity.edit(a.activityId)}" />
+							<span> </span>
+							<h:commandLink value="Delete" onclick="if (! confirm('Vous êtes sûre de supprimer?')) return false"
+							rendered="#{p.email == request.getSession().getAttribute('username')}"
+							styleClass="btn btn-primary btn-xs"
+							action="#{activity.delete(a.activityId)}">
+							<f:ajax execute="@this" render="@form" />
+							</h:commandLink>
 					</p:column>
 				</p:dataTable>
 			</h:form>

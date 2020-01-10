@@ -166,4 +166,10 @@ public class ActivityController implements Serializable {
 		return as.findActivitiesByTitle(title);
 	}
 
+	public String delete(Long activityId) {
+		theActivity = as.getActivityById(activityId);
+		as.deleteActivity(theActivity);
+        return "showCv?faces-redirect=true";
+	}
+	
 }

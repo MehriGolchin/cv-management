@@ -47,7 +47,7 @@ public class ActivityService implements IActivityService {
 		return em.find(Activity.class, activityId);
 	}
 
-	@RolesAllowed({"user"})
+	//@RolesAllowed({"user"})
 	public void deleteActivity(Activity activity) {
 		activity = em.merge(activity);
 		em.remove(activity);
